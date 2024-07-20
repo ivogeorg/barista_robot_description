@@ -1,0 +1,231 @@
+<?xml version="1.6"?>
+
+<robot name="barista">
+    <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+    </material>
+
+    <material name="light_gray">
+        <color rgba="0.83 0.83 0.83 1.0"/>
+    </material>
+
+    <link name="base_footprint"/>
+
+    <link name="base_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.155" radius="0.178"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+                        
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.155" radius="0.178"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="1.0"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.009923083333333332" ixy="0.0" ixz="0.0" iyy="0.009923083333333332" iyz="0.0" izz="0.015842"/>
+        </inertial>
+    </link>
+
+    <gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <joint name="joint_base_footprint_base_link" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <!-- Separate standoff rods -->
+    <!-- Will a cycle with only fixed joints be rejected by the parser or simulator -->
+    <link name="standoff_rod_1">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <inertial>
+            <mass value="0.02"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="8.116666666666667e-05" ixy="0.0" ixz="0.0" iyy="8.116666666666667e-05" iyz="0.0" izz="1.0000000000000002e-06"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_base_link_standoff_rod_1" type="fixed">
+        <origin rpy="0 0 0" xyz="0.050 0.140 0.1875"/>
+        <parent link="base_link"/>
+        <child link="standoff_rod_1"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="standoff_rod_2">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <inertial>
+            <mass value="0.02"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="8.116666666666667e-05" ixy="0.0" ixz="0.0" iyy="8.116666666666667e-05" iyz="0.0" izz="1.0000000000000002e-06"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_base_link_standoff_rod_2" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.050 0.140 0.1875"/>
+        <parent link="base_link"/>
+        <child link="standoff_rod_2"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <link name="standoff_rod_3">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <inertial>
+            <mass value="0.02"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="8.116666666666667e-05" ixy="0.0" ixz="0.0" iyy="8.116666666666667e-05" iyz="0.0" izz="1.0000000000000002e-06"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_base_link_standoff_rod_3" type="fixed">
+        <origin rpy="0 0 0" xyz="0.050 -0.140 0.1875"/>
+        <parent link="base_link"/>
+        <child link="standoff_rod_3"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+        <link name="standoff_rod_4">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.220" radius="0.010"/>
+            </geometry>
+            <material name="light_gray"/>
+        </visual>
+
+        <inertial>
+            <mass value="0.02"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="8.116666666666667e-05" ixy="0.0" ixz="0.0" iyy="8.116666666666667e-05" iyz="0.0" izz="1.0000000000000002e-06"/>
+        </inertial>
+    </link>
+
+    <joint name="joint_base_link_standoff_rod_4" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.050 -0.140 0.1875"/>
+        <parent link="base_link"/>
+        <child link="standoff_rod_4"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+
+    <link name="cup_holder">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.090" radius="0.160"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+                        
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.090" radius="0.160"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="0.2"/>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <inertia ixx="0.001415" ixy="0.0" ixz="0.0" iyy="0.001415" iyz="0.0" izz="0.00256"/>
+        </inertial>
+    </link>
+
+    <gazebo reference="cup_holder">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <joint name="joint_standoff_rod_1_cup_holder" type="fixed">
+        <origin rpy="0 0 0" xyz="0.050 0.140 0.155"/>
+        <parent link="standoff_rod_1"/>
+        <child link="cup_holder"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="joint_standoff_rod_2_cup_holder" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.050 0.140 0.155"/>
+        <parent link="standoff_rod_2"/>
+        <child link="cup_holder"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="joint_standoff_rod_3_cup_holder" type="fixed">
+        <origin rpy="0 0 0" xyz="0.050 -0.140 0.155"/>
+        <parent link="standoff_rod_3"/>
+        <child link="cup_holder"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+    <joint name="joint_standoff_rod_4_cup_holder" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.050 -0.140 0.155"/>
+        <parent link="standoff_rod_4"/>
+        <child link="cup_holder"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+
+</robot>
