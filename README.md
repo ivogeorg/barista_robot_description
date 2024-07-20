@@ -9,7 +9,7 @@
 ##### 1. Handling the standoff rods
 
 1. The robot model has a potential cycle in the design of the standoff rods. Since all rods are to attach to both `base_link` and `cup_holder`, if each rod is a separate link, `cup_holder` will have 4 joints with 4 different parents. This is a cycle and therefore not viable. Below is the result of visualizing such a model in Rviz2:  
-   ![Multiple parents rejected](assets/muptiple_parents_rejected.png)  
+   ![Multiple parents rejected](assets/multiple_parents_rejected.png)  
 2. The `robot_state_publisher-1` parses the structure correctly, but all but the last joint with `cup_holder` as a child is ignored to preserve the tree structure:  
    ```
    user:~/ros2_ws$ ros2 launch barista_robot_description barista_urdf_separate_rods.launch.py
