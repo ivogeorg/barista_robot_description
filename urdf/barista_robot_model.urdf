@@ -480,7 +480,36 @@
     <dynamics damping="0.0" friction="0.1"/>
   </joint>
 
-   <!-- Laser sensor -->
+   <!-- Laser scanner -->
+   <link name="laser_scanner">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://barista_robot_description/meshes/hokuyo_urg_04lx.dae" scale="1.0 1.0 1.0"/>
+            </geometry>
+        </visual>
 
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://barista_robot_description/meshes/hokuyo_urg_04lx.dae" scale="1.0 1.0 1.0"/>
+            </geometry>
+        </collision>
+
+        <!-- TODO inertial -->
+
+    </link>
+
+    <joint name="joint_base_link_laser_scanner" type="fixed">
+        <origin rpy="0 0 0" xyz="0.13 0 0.0775"/>
+        <parent link="base_link"/>
+        <child link="laser_scanner"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+   <!-- Plugins -->
+   <!-- Joint publisher -->
+   <!-- Differential driver -->
+   <!-- Laser sensor -->
 
 </robot>
