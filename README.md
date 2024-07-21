@@ -118,3 +118,11 @@
     </joint>
    ```
 4. The only problem is that the inertia has to be approximated. In this case, it is approximated by a light box formed by the rods, with the default inertial center of the assembly link falling in between them.
+
+##### 2. Laser scanner setup
+
+1. Picked the [Hokuyo URG-04LX mesh](https://bitbucket.org/theconstructcore/checkpoint4_auxiliary_files/src/master/meshes/hokuyo_urg_04lx.dae). Note that this scanner is not 360-deg.
+2. Mass and dimensions for `inertial` read off the [spec sheet](https://www.hokuyo-aut.jp/dl/Specifications_URG-04LX_1513063395.pdf).
+   1. Mass: 160 g.
+   2. Dimensions: 50 x 50 x 70 mm.
+   
