@@ -125,4 +125,37 @@
 2. Mass and dimensions for `inertial` read off the [spec sheet](https://www.hokuyo-aut.jp/dl/Specifications_URG-04LX_1513063395.pdf).
    1. Mass: 160 g.
    2. Dimensions: 50 x 50 x 70 mm.
+
+##### 3. Launching
+
+1. To visualize the URDF model in Rviz2:
+   1. Launch description for nodes `robot_state_publisher_node` and `rviz_node`:
+      ```
+      cd ~/ros2_ws
+      colcon build
+      source install/setup.bash
+      ros2 launch barista_robot_description visualize_barista_urdf.launch.py
+      ```
+   2. Launch `joint_state_publisher_gui`:
+      ```
+      ros2 run joint_state_publisher_gui joint_state_publisher_gui
+      ```
+2. Full launch of nodes `gazebo`, `robot_state_publisher_node`, `rviz_node`, and `spawn_robot`.
+   1. Funcionality of nodes:
+      1. `gazebo`: Launches Gazebo simulator with ROS and the `worlds/bar_bot_empty.world` world file.
+      2. `robot_state_publisher_node`: Publishes the URDF/Xacro file to the `/robot_description` topic (package and executable `robot_state_publisher`) the static TFs.
+      3. `rviz_node`: Launches Rviz2 with 'rviz/urdf_vis.rviz' config file.
+      4. `spawn_robot`: Spawns the robot from the `/robot_description` topic (pacakge `gazebo_ros` and executable `spawn_entity.py`) in Gazebo with give position and orientation.
+      5. **Note:** Instead of the `joint_state_publisher_gui` to publish joint states (needed by RViz2 to show all links connected by non-`fixed` joints), the URDF/Xacro file now has the `bar_bot_joint_state` plugin, allowing getting the joint states directly from Gazebo.
+   2. Command-line launch:
+      ```
+      cd ~/ros2_ws
+      colcon build
+      source install/setup.bash
+      ros2 launch barista_robot_description barista_urdf.launch.py
+      ```
+
+
+
+
    
