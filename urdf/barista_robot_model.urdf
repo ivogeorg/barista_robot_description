@@ -516,7 +516,7 @@
     </link>
 
     <joint name="laser_scan_frame_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 0.03"/>
+        <origin rpy="0 0 0" xyz="0 0 1"/>
         <parent link="laser_scanner"/>
         <child link="laser_scan_frame"/>
         <axis xyz="0 0 0"/>
@@ -587,7 +587,7 @@
         </scan>
         <range>
           <!-- <min>0.1</min> -->
-          <min>0.2</min>
+          <min>0.5</min>
           <max>5.0</max>
         </range>
       </ray>

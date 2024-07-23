@@ -137,6 +137,13 @@
 
 ![Laser scan incorrect position](assets/laser_scanner_position.png)  
 
+3. In the following images, the `laser_scan_frame` link is positioned at 1 m above its parent `laser_scanner` link. Rviz2 TF shows this correctly. However, the scanner rays don't show in Gazebo and show at the height of the center of the `base_footprint` or `base_link`. The reason it shows at all is that the box in Gazebo it's detecting is 2 m high.  
+
+| Gazebo | Rviz2 |
+| --- | --- |
+| ![2-meter tall box in Gazebo](assets/laser_scanner_gazebo.png) | ![Scanner rays not in frame](assets/laser_scanner_rviz2.png) |  
+
+
 ##### 3. Launching
 
 1. To visualize the URDF model in Rviz2:
