@@ -1,3 +1,6 @@
+#! /usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -5,8 +8,21 @@ from launch import LaunchDescription
 from launch.substitutions import Command
 from launch_ros.actions import Node
 
+from launch.actions import DeclareLaunchArgument
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from ament_index_python.packages import get_package_prefix
+
+
 # this is the function launch  system will look for
 def generate_launch_description():
+
+    ####### NODE SETUP: gazebo_node #######
+
+
+    ####### END NODE SETUP #######
+
+
 
     ####### DATA INPUT ##########
     urdf_file = 'barista_robot_model.urdf'

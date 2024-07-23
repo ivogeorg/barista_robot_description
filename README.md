@@ -155,6 +155,11 @@
       ros2 launch barista_robot_description barista_urdf.launch.py
       ```
 
+##### 4. Masses
+
+1. Base: [5 kg](https://iclebo-kobuki.readthedocs.io/en/latest/specifications.html).
+2. Laser scanner: 0.160 kg.
+
 
 
 
