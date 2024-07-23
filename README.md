@@ -124,7 +124,9 @@
 1. Picked the [Hokuyo URG-04LX mesh](https://bitbucket.org/theconstructcore/checkpoint4_auxiliary_files/src/master/meshes/hokuyo_urg_04lx.dae). Note that this scanner is not 360-deg.
 2. Mass and dimensions for `inertial` read off the [spec sheet](https://www.hokuyo-aut.jp/dl/Specifications_URG-04LX_1513063395.pdf).
    1. Mass: 160 g.
-   2. Dimensions: 50 x 50 x 70 mm.
+   2. Dimensions: 50 x 50 x 70 mm. Simpler `collision`, a box instead of the full mesh.
+
+![Bar bot in Rviz2](assets/bar_bot_rviz2.png)  
 
 ##### 3. Launching
 
