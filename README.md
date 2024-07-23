@@ -168,7 +168,7 @@
 
 ###### 3.1 Errors
 
-There is an ALSA error on launching Gazebo:
+1. There is an ALSA error on launching Gazebo:
 ```
 [gzserver-1] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
 [gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
@@ -181,7 +181,31 @@ There is an ALSA error on launching Gazebo:
 [gzserver-1] AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
 ```
 
-ALSA is The Advanced Linux Sound Architecture, which is of no use for this project.
+ALSA is The Advanced Linux Sound Architecture, which is of no use for this project. Seems to be innocuous.
+
+2. Managed to launch the world separately (`gazebo`) and then the `robot_state_publisher_node` and `rviz_node` together and then `spawn_robot` just as it was done for the Box Bot final, that is, by launching the world first and then launching an `xml` file with two `launch` `include file`-s, but can't make it work lanching them manually Neither do I know how to launch them all correctly from a single launch file.
+   ```
+   cd ~/ros2_ws
+   colcon build
+   source install/setup.bash
+   ros2 launch barista_robot_description start_gazebo_world.launch.py
+   ```
+   and
+   ```
+   cd ~/ros2_ws
+   source install/setup.bash
+   ros2 launch barista_robot_description spawn_bar_bot_ros2.launch.xml
+   ```
+   where the xml file contains
+   ```
+   <?xml version='1.0' ?>
+       <launch>
+       <!-- Publish URDF file in robot_description topic -->
+       <include file="$(find-pkg-share barista_robot_description)/launch/visualize_barista_urdf.launch.py"/>
+       <!-- Read robot_description and spawn in gazebo running sim -->
+       <include file="$(find-pkg-share barista_robot_description)/launch/spawn_robot_description.launch.py"/>
+   </launch>
+   ```  
 
 ##### 4. Masses
 
