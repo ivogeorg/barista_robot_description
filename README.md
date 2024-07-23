@@ -117,7 +117,7 @@
         <axis xyz="0 0 0"/>
     </joint>
    ```
-4. The only problem is that the inertia has to be approximated. In this case, it is approximated by a light box formed by the rods, with the default inertial center of the assembly link falling in between them.
+4. The only problem is that the inertia has to be approximated. In this case, it is approximated by a light box formed by the rods, with the default inertial center of the assembly link falling in between the rods.
 
 ##### 2. Laser scanner setup
 
