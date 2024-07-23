@@ -128,6 +128,15 @@
 
 ![Bar bot in Rviz2](assets/bar_bot_rviz2.png)  
 
+![Bar bot frames](assets/bar_bot_frames.png)  
+
+###### 2.1 Errors
+
+1. The scanner rays are not visible in Gazebo despite `<visualize>true</visualize>` and the laser scanner subscriber in Rviz2 showing the rays hitting the objects set around the robot.
+2. The scanner rays emanated from the center of `base_footprint` despite creating a (virtual) link `laser_scan_frame` and connecting it to the `laser_scanner` link with a fixed joint and then referencing the laser scanner plugin to `laser_scan_frame`. Changing the `pose` in the `<gazebo>` plugin config in the URDF file doesn't change the position either.  
+
+![Laser scan incorrect position](assets/laser_scanner_position.png)  
+
 ##### 3. Launching
 
 1. To visualize the URDF model in Rviz2:
@@ -142,7 +151,7 @@
       ```
       ros2 run joint_state_publisher_gui joint_state_publisher_gui
       ```
-2. Full launch of nodes `gazebo`, `robot_state_publisher_node`, `rviz_node`, and `spawn_robot`.
+2. (goal) Full launch of nodes `gazebo`, `robot_state_publisher_node`, `rviz_node`, and `spawn_robot`.
    1. Funcionality of nodes:
       1. `gazebo`: Launches Gazebo simulator with ROS and the `worlds/bar_bot_empty.world` world file.
       2. `robot_state_publisher_node`: Publishes the URDF/Xacro file to the `/robot_description` topic (package and executable `robot_state_publisher`) the static TFs.
@@ -156,6 +165,23 @@
       source install/setup.bash
       ros2 launch barista_robot_description barista_urdf.launch.py
       ```
+
+###### 3.1 Errors
+
+There is an ALSA error on launching Gazebo:
+```
+[gzserver-1] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+[gzserver-1] ALSA lib conf.c:5701:(snd_config_expand) Evaluate error: No such file or directory
+[gzserver-1] ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+[gzserver-1] AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
+```
+
+ALSA is The Advanced Linux Sound Architecture, which is of no use for this project.
 
 ##### 4. Masses
 

@@ -231,7 +231,7 @@
 
   </link>
 
-  <gazebo reference="left_wheel">
+  <gazebo reference="right_wheel">
     <kp>1000000000000000000000000000.0</kp>
     <kd>1000000000000000000000000000.0</kd>
     <mu1>10.0</mu1>
@@ -512,6 +512,17 @@
         <axis xyz="0 0 0"/>
     </joint>
 
+    <link name="laser_scan_frame">
+    </link>
+
+    <joint name="laser_scan_frame_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0.03"/>
+        <parent link="laser_scanner"/>
+        <child link="laser_scan_frame"/>
+        <axis xyz="0 0 0"/>
+    </joint>
+
+
    <!-- Plugins -->
    <!-- Joint publisher (for Gazebo)-->
   <gazebo>
@@ -561,9 +572,10 @@
   
    <!-- Sensors (with plugins) -->
   <!-- Laser scanner (simulated) -->
-  <gazebo reference="laser_scanner">
+  <gazebo reference="laser_scan_frame">
     <sensor name="sensor_ray" type="ray">
-      <pose>0 0 0 0 0 0</pose>
+      <!-- <pose>0 0 0 0 0 0</pose> -->
+      <pose>0.13 0 0.0775 0 0 0</pose>
       <ray>
         <scan>
           <horizontal>
@@ -574,7 +586,8 @@
           </horizontal>
         </scan>
         <range>
-          <min>0.1</min>
+          <!-- <min>0.1</min> -->
+          <min>0.2</min>
           <max>5.0</max>
         </range>
       </ray>
