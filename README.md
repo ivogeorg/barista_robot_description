@@ -128,12 +128,20 @@
 
 ![Bar bot in Rviz2](assets/bar_bot_rviz2.png)  
 
+3. To visualize the frame tree:
+   ```
+   sudo apt update
+   printenv ROS_DISTRO # e.g. humble
+   sudo apt install ros-humble-rqt-tf-tree
+   ros2 run ros2 run rqt_tf_tree rqt_tf_tree
+   ```  
+
 ![Bar bot frames](assets/bar_bot_frames.png)  
 
 ###### 2.1 Errors
 
 1. The scanner rays are not visible in Gazebo despite `<visualize>true</visualize>` and the laser scanner subscriber in Rviz2 showing the rays hitting the objects set around the robot.
-2. The scanner rays emanated from the center of `base_footprint` despite creating a (virtual) link `laser_scan_frame` and connecting it to the `laser_scanner` link with a fixed joint and then referencing the laser scanner plugin to `laser_scan_frame`. Changing the `pose` in the `<gazebo>` plugin config in the URDF file doesn't change the position either.  
+2. The scanner rays emanate from the center of `base_footprint` despite creating a (virtual) link `laser_scan_frame` and connecting it to the `laser_scanner` link with a fixed joint and then referencing the laser scanner plugin to `laser_scan_frame`. Changing the `pose` in the `<gazebo>` plugin config in the URDF file doesn't change the position either.  
 
 ![Laser scan incorrect position](assets/laser_scanner_position.png)  
 
