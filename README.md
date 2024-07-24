@@ -263,6 +263,11 @@ ALSA is The Advanced Linux Sound Architecture, which is of no use for this proje
 
 1. Base: [5 kg](https://iclebo-kobuki.readthedocs.io/en/latest/specifications.html).
 2. Laser scanner: 0.160 kg.
+3. Cup holder: 1 kg.
+4. Standoff rods (total): 0.4 kg.
+5. Wheels (each): 0.08 kg.
+6. Casters (each cylinder): 0.001 kg.
+7. Casters (sphere): 0.06 kg.
 
 
 
