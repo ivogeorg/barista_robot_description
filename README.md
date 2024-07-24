@@ -140,10 +140,47 @@
 
 ###### 2.1 Errors
 
-1. The scanner rays are not visible in Gazebo despite `<visualize>true</visualize>` and the laser scanner subscriber in Rviz2 showing the rays hitting the objects set around the robot.
-2. The scanner rays emanate from the center of `base_footprint` despite creating a (virtual) link `laser_scan_frame` and connecting it to the `laser_scanner` link with a fixed joint and then referencing the laser scanner plugin to `laser_scan_frame`. Changing the `pose` in the `<gazebo>` plugin config in the URDF file doesn't change the position either.  
+1. ~The scanner rays are not visible in Gazebo despite `<visualize>true</visualize>` and the laser scanner subscriber in Rviz2 showing the rays hitting the objects set around the robot.~ _Works on Galactic, Gazebo 11.9.0, not in Humble, Gazebo 11.10.2._
+2. ~The scanner rays emanate from the center of `base_footprint` despite creating a (virtual) link `laser_scan_frame` and connecting it to the `laser_scanner` link with a fixed joint and then referencing the laser scanner plugin to `laser_scan_frame`. Changing the `pose` in the `<gazebo>` plugin config in the URDF file doesn't change the position either.~ _Adding `<frame_name>laser_scan_frame</frame_name>` fixes the problem._  
 
 ![Laser scan incorrect position](assets/laser_scanner_position.png)  
+
+```
+  <gazebo reference="laser_scan_frame">
+    <sensor name="sensor_ray" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>200</samples>
+            <resolution>1.0</resolution>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.1</min>
+          <!-- <min>0.4</min> -->
+          <max>5.0</max>
+        </range>
+      </ray>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <!-- <update_rate>100.0</update_rate> -->
+      <update_rate>10.0</update_rate> <!-- 10, 15, 20, 30 Hz -->
+      <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <namespace>/bar_bot</namespace>
+          <remapping>~/out:=laser_scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frame_name>laser_scan_frame</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+```  
+
+![Laser scan correct position](assets/laser_scanner_rviz2_corrected.png)  
 
 3. In the following images, the `laser_scan_frame` link is positioned at 1 m above its parent `laser_scanner` link. Rviz2 TF shows this correctly. However, the scanner rays don't show in Gazebo and show at the height of the center of the `base_footprint` or `base_link`. The reason it shows at all is that the box in Gazebo it's detecting is 2 m high.  
 
