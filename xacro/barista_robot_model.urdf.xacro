@@ -3,6 +3,8 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista">
 
     <xacro:include filename="$(find barista_robot_description)/xacro/wheel.xacro"/>
+    <xacro:include filename="$(find barista_robot_description)/xacro/standoff.xacro"/>
+    <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro"/>
 
 
     <material name="blue">
@@ -54,67 +56,10 @@
     </joint>
 
     <link name="standoff_rods">
-        <visual>
-            <origin rpy="0 0 0" xyz="0.050 0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-            <material name="light_gray"/>
-        </visual>
-
-        <visual>
-            <origin rpy="0 0 0" xyz="-0.050 0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-            <material name="light_gray"/>
-        </visual>
-
-        <visual>
-            <origin rpy="0 0 0" xyz="0.050 -0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-            <material name="light_gray"/>
-        </visual>
-
-        <visual>
-            <origin rpy="0 0 0" xyz="-0.050 -0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-            <material name="light_gray"/>
-        </visual>
-
-        <!-- collision -->
-        <collision>
-            <origin rpy="0 0 0" xyz="0.050 0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-        </collision>
-
-        <collision>
-            <origin rpy="0 0 0" xyz="-0.050 0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-        </collision>
-
-        <collision>
-            <origin rpy="0 0 0" xyz="0.050 -0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-        </collision>
-
-        <collision>
-            <origin rpy="0 0 0" xyz="-0.050 -0.140 0"/>
-            <geometry>
-                <cylinder length="0.220" radius="0.010"/>
-            </geometry>
-            <material name="light_gray"/>
-        </collision>
+        <xacro:standoff x_coord="0.050" y_coord="0.140"/>
+        <xacro:standoff x_coord="-0.050" y_coord="0.140"/>
+        <xacro:standoff x_coord="0.050" y_coord="-0.140"/>
+        <xacro:standoff x_coord="-0.050" y_coord="-0.140"/>
 
         <!-- approximate a very light box with size [0.1, 0.28, 0.22] -->
         <inertial>
@@ -132,28 +77,7 @@
         <axis xyz="0 0 0"/>
     </joint>
 
-    <link name="cup_holder">
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <geometry>
-                <cylinder length="0.090" radius="0.160"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-                        
-        <collision>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <geometry>
-                <cylinder length="0.090" radius="0.160"/>
-            </geometry>
-        </collision>
-
-        <inertial>
-            <mass value="1.0"/>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <inertia ixx="0.007075" ixy="0.0" ixz="0.0" iyy="0.007075" iyz="0.0" izz="0.0128"/>
-        </inertial>
-    </link>
+    <xacro:cup_holder_tray/>
 
     <gazebo reference="cup_holder">
         <material>Gazebo/Blue</material>
