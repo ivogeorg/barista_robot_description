@@ -6,7 +6,7 @@
     <xacro:include filename="$(find barista_robot_description)/xacro/standoff.xacro"/>
     <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro"/>
 
-    <xacro:arg name="include_scanner" default="true"/>
+    <xacro:arg name="include_laser" default="true"/>
 
 
     <material name="blue">
@@ -366,47 +366,6 @@
     <dynamics damping="0.0" friction="0.1"/>
   </joint>
 
-   <!-- Laser scanner -->
-   <!-- <link name="laser_scanner">
-        <visual>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <geometry>
-                <mesh filename="package://barista_robot_description/meshes/hokuyo_urg_04lx.stl" scale="1.0 1.0 1.0"/>
-            </geometry>
-            <material name="light_gray"/>
-        </visual>
-
-        <collision>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <geometry>
-                <box size="0.050 0.050 0.070"/>
-            </geometry>
-        </collision>
-
-        <inertial>
-            <mass value="0.160"/>
-            <origin rpy="0 0 0" xyz="0 0 0"/>
-            <inertia ixx="9.866666666666669e-05" ixy="0.0" ixz="0.0" iyy="9.866666666666669e-05" iyz="0.0" izz="6.666666666666668e-05"/>
-        </inertial>
-    </link>
-
-    <joint name="joint_chassis_laser_scanner" type="fixed">
-        <origin rpy="0 0 0" xyz="0.13 0 0.0775"/>
-        <parent link="chassis"/>
-        <child link="laser_scanner"/>
-        <axis xyz="0 0 0"/>
-    </joint>
-
-    <link name="laser_scan_frame">
-    </link>
-
-    <joint name="laser_scan_frame_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 0.055"/>
-        <parent link="laser_scanner"/>
-        <child link="laser_scan_frame"/>
-        <axis xyz="0 0 0"/>
-    </joint> -->
-
    <!-- Plugins -->
    <!-- Joint publisher (for Gazebo)-->
   <gazebo>
@@ -456,7 +415,7 @@
   
  
   <!-- Laser scanner (conditional) -->
-    <xacro:if value="$(arg include_scanner)">
+    <xacro:if value="$(arg include_laser)">
         <xacro:include filename="$(find barista_robot_description)/xacro/laser_scanner.xacro"/>
         <xacro:laser_scanner/>
     </xacro:if>
