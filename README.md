@@ -4,6 +4,26 @@
 | --- | --- | --- |
 | ![Real robot](assets/rick_and_morty.jpg) | ![Barista robot](assets/robot_diagram.png) | ![Model](assets/laser-offset.png) |
 
+#### Submission notes
+
+##### Part 1
+
+1. Launching:
+   ```
+   cd ~/ros2_ws/src
+   git clone https://github.com/ivogeorg/barista_robot_description.git
+   cd ~/ros2_ws
+   colcon build --packages-select barista_robot_description
+   source install/setup.bash
+   ros2 launch barista_robot_description barista_urdf.launch.py
+   ```
+2. Note that since the first time around it takes longer for Gazebo to start, the spawn process dies and does not populate the robot, even after Gazebo comes up. It may require to start, kill, and re-start again until the Gazebo lag diminishes. It usually happens on the second try.
+3. Expected result:
+   | Gazebo | Rviz2 |
+   | --- | --- |
+   | ![Barista spawned in Gazebo](assets/checkpoint-7-part-1-gazebo.png) | ![Barista visualized in Rviz2](assets/checkpoint-7-part-1-rviz2.png) |
+   
+
 #### Implementation notes
 
 ##### 1. Handling the standoff rods
