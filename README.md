@@ -306,7 +306,31 @@ ALSA is The Advanced Linux Sound Architecture, which is of no use for this proje
 6. Casters (each cylinder): 0.001 kg.
 7. Casters (sphere): 0.06 kg.
 
+##### 5. Spawning two robots
 
-
-
-   
+1. Namespaces isloate the topics published and subscribed to for the two robots, which are both from the same model.
+   1. Topics look as follows:
+      ```
+      /robot1/cmd_vel
+      /robot1/joint_states
+      /robot1/odom
+      /robot1/robot_description
+      /robot1/scan
+      /robot2/cmd_vel
+      /robot2/joint_states
+      /robot2/odom
+      /robot2/robot_description
+      /robot2/scan
+      ```
+   2. This requires that two separate `robot_state_publisher` nodes be launched to publish the `/robot*/robot_description` topics.  
+   3. This requires that two separate entities be spawned into the simulator, each using the appropriate `/robot*/robot_description` topic.  
+   4. This requires that the `joint_state_publisher`, `diff_drive`, and `ray_sensor` plugins use robot-name namespaces.  
+2. When teleoperating the two robots independently, the `cmd_vel` topics emitted have to be remapped to the appropriate `/robot*/cmd_vel` as follows:
+   ```
+   ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/robot1/cmd_vel
+   ```
+3. To visualize the two robots correctly in Rviz1, there needs to be one TF tree where every link has a direct or indirect transform from the root node.
+   1. When the two robots are spawned separately, this creates a two-tf-tree situation which doesn't work in Rviz2.
+   2. The output of `ros2 run rqt_tf_tree rqt_tf_tree` shows this:
+      ![Two TF trees]()
+   3. To fix this, the two tf-tree root nodes `/robot*/odom` need to be connected to `world` by publishing a transform from `world` to `/robot*/odom`.  
