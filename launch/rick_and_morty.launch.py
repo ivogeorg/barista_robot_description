@@ -101,44 +101,37 @@ def generate_launch_description():
                    '-topic', robot_name_2+'/robot_description']
     )
 
-    # World to robot base broadcaster
-    # broadcaster_args = {
-    #     'robot_name': robot_name_1,
-    #     'robot_base_frame': 'base_footprint',
-    # }
-
-    # world2base1 = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource([
-    #                                     install_dir + '/lib/' + description_package_name, 
-    #                                     '/robot_world_to_base_tf_broadcaster.py'
-    #                                 ]),
-    #     launch_arguments=broadcaster_args.items(),
-    # )
-
-    # broadcaster_args = {
-    #     'robot_name': robot_name_2,
-    #     'robot_base_frame': 'base_footprint',
-    # }
-
-    # world2base2 = IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource([
-    #                                     install_dir + '/lib/' + description_package_name, 
-    #                                     '/robot_world_to_base_tf_broadcaster.py'
-    #                                 ]),
-    #     launch_arguments=broadcaster_args.items(),
-    # )
-
-    world2base1 = Node(
-        package=description_package_name,
-        executable='robot_world_to_base_tf_broadcaster.py',
-        arguments=['-robot_name', robot_name_1, '-robot_base_frame', "base_footprint"]
+    # Static transform world to odom
+    static_tf_pub_1 = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name="".join(['static_transform_publisher_', robot_name_1, '_odom']),
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '0', '0', '0', '0', 'world', robot_name_1 + '/odom'] # parent, child
     )
 
-    world2base2 = Node(
-        package=description_package_name,
-        executable='robot_world_to_base_tf_broadcaster.py',
-        arguments=['-robot_name', robot_name_2, '-robot_base_frame', "base_footprint"]
+    static_tf_pub_2 = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name="".join(['static_transform_publisher_', robot_name_2, '_odom']),
+        output='screen',
+        emulate_tty=True,
+        arguments=['0', '0', '0', '0', '0', '0', 'world', robot_name_2 + '/odom'] # parent, child
     )
+
+    # Rviz2
+    rviz_config_dir = \
+        os.path.join(get_package_share_directory(description_package_name), 'rviz', 'urdf_vis_two_robots.rviz')
+
+    rviz_node = Node(
+            package='rviz2',
+            executable='rviz2',
+            output='screen',
+            name='rviz_node',
+            parameters=[{'use_sim_time': True}],
+            arguments=['-d', rviz_config_dir])
+
 
     return LaunchDescription([
         world_file_arg,
@@ -147,6 +140,7 @@ def generate_launch_description():
         rsp_robot2,
         spawn_robot1,
         spawn_robot2,
-        world2base1,
-        world2base2,
+        static_tf_pub_1,
+        static_tf_pub_2,
+        rviz_node,
     ])

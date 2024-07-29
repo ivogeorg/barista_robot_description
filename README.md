@@ -333,4 +333,14 @@ ALSA is The Advanced Linux Sound Architecture, which is of no use for this proje
    1. When the two robots are spawned separately, this creates a two-tf-tree situation which doesn't work in Rviz2.
    2. The output of `ros2 run rqt_tf_tree rqt_tf_tree` shows this:
       ![Two TF trees](assets/frames_two_tf_trees.png)  
-   3. To fix this, the two tf-tree root nodes `/robot*/odom` need to be connected to `world` by publishing a transform from `world` to `/robot*/odom`.  
+   3. To fix this, the two tf-tree root nodes `/robot*/odom` need to be connected to `world` by publishing a static transform from `world` to `/robot*/odom`. 
+      ![Single TF tree](assets/frames_single_tf_tree.png)  
+
+###### 5.1 Problems & Errors
+
+1. The laser scan messages are being discarded because "the queue is full". In the message, the `laser_scan_name` doesn't have a robot-name prefix. The `/rick/scan` and `/morty/scan` topics echo fine. There is a single TF tree with all links connected.    
+   ```
+   [rviz2-9] [INFO] [1722287244.032478201] [rviz_node]: Message Filter dropping message: frame 'laser_scan_frame' at time 1659.106 for reason 'discarding message because the queue is full'
+   ```
+2. The two robots are tilted forward in both Gazebo and Rviz2.  
+   ![Tilted_robots](assets/tilted_robots.png)  

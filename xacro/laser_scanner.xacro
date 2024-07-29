@@ -70,7 +70,7 @@
             <plugin name="laser_${robot_name}" filename="libgazebo_ros_ray_sensor.so">
                 <ros>
                     <!-- Expect xacro:property robot_name-->
-                    <!-- <namespace>/${robot_name}</namespace> -->
+                    <namespace>/${robot_name}</namespace>
                     <remapping>~/out:=/${robot_name}/scan</remapping>
                 </ros>
                 <output_type>sensor_msgs/LaserScan</output_type>
