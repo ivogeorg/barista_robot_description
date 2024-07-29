@@ -332,5 +332,5 @@ ALSA is The Advanced Linux Sound Architecture, which is of no use for this proje
 3. To visualize the two robots correctly in Rviz1, there needs to be one TF tree where every link has a direct or indirect transform from the root node.
    1. When the two robots are spawned separately, this creates a two-tf-tree situation which doesn't work in Rviz2.
    2. The output of `ros2 run rqt_tf_tree rqt_tf_tree` shows this:
-      ![Two TF trees]()
+      ![Two TF trees](assets/frames_two_tf_trees.png)  
    3. To fix this, the two tf-tree root nodes `/robot*/odom` need to be connected to `world` by publishing a transform from `world` to `/robot*/odom`.  
