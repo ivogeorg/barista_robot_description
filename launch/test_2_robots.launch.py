@@ -9,8 +9,8 @@ from ament_index_python.packages import get_package_prefix
 
 def generate_launch_description():
     
-    pkg_box_bot_gazebo = get_package_share_directory('my_box_bot_gazebo')
-    description_package_name = "my_box_bot_description"
+    pkg_box_bot_gazebo = get_package_share_directory('barista_robot_description')
+    description_package_name = "barista_robot_description"
     install_dir = get_package_prefix(description_package_name)
     
     # This is to find the models inside the models folder in my_box_bot_gazebo package
@@ -37,7 +37,7 @@ def generate_launch_description():
     world_file_arg = DeclareLaunchArgument(
         'world',
         default_value=[get_package_share_directory(
-            'my_box_bot_gazebo'), '/worlds/box_bot_empty.world'],
+            'barista_robot_description'), '/worlds/playpen.world'],
         description='Path to the Gazebo world file'
     )
 
@@ -56,12 +56,12 @@ def generate_launch_description():
     )
 
     # Define the robot model files to be used
-    robot_desc_file = "box_bot_final.urdf"
+    robot_desc_file = "barista_robot_model.urdf.xacro"
     robot_desc_path = os.path.join(get_package_share_directory(
-        "my_box_bot_description"), "urdf", robot_desc_file)
+        "barista_robot_description"), "xacro", robot_desc_file)
 
-    robot_name_1 = "robot1"
-    robot_name_2 = "robot2"
+    robot_name_1 = "rick"
+    robot_name_2 = "morty"
 
     rsp_robot1 = Node(
         package='robot_state_publisher',
@@ -93,7 +93,7 @@ def generate_launch_description():
     spawn_robot2 = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-entity', 'robot2', '-x', '1.0', '-y', '1.0', '-z', '0.0',
+        arguments=['-entity', 'robot2', '-x', '-3.0', '-y', '3.0', '-z', '0.0',
                    '-topic', robot_name_2+'/robot_description']
     )
 
