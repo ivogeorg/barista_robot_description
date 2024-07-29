@@ -34,7 +34,14 @@ install(
 		worlds
 		models
 	DESTINATION
-		share/${PROJECT_NAME}/
+		share/${PROJECT_NAME}
+)
+
+install(
+	PROGRAMS
+		scripts/pub_world2root_transform.py
+	DESTINATION
+		lib/${PROJECT_NAME}
 )
 
 ament_package()
