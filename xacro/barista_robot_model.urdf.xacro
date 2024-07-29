@@ -20,6 +20,7 @@
         <color rgba="0.0 0.0 0.0 1.0"/>
     </material>
 
+    <!-- Robot base/root link -->
     <link name="base_footprint"/>
 
     <link name="chassis">

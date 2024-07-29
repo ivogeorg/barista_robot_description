@@ -55,6 +55,8 @@ def generate_launch_description():
         launch_arguments=gazebo_launch_args.items(),
     )
 
+    print("gazebo_ros share directory="+ str(get_package_share_directory('gazebo_ros')))
+
     # Define the robot model files to be used
     robot_desc_file = "barista_robot_model.urdf.xacro"
     robot_desc_path = os.path.join(get_package_share_directory(
@@ -63,6 +65,7 @@ def generate_launch_description():
     robot_name_1 = "rick"
     robot_name_2 = "morty"
 
+    # Robot state publisher
     rsp_robot1 = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -83,6 +86,7 @@ def generate_launch_description():
         output="screen"
     )
 
+    # Spawn entity
     spawn_robot1 = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
@@ -97,11 +101,52 @@ def generate_launch_description():
                    '-topic', robot_name_2+'/robot_description']
     )
 
+    # World to robot base broadcaster
+    # broadcaster_args = {
+    #     'robot_name': robot_name_1,
+    #     'robot_base_frame': 'base_footprint',
+    # }
+
+    # world2base1 = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource([
+    #                                     install_dir + '/lib/' + description_package_name, 
+    #                                     '/robot_world_to_base_tf_broadcaster.py'
+    #                                 ]),
+    #     launch_arguments=broadcaster_args.items(),
+    # )
+
+    # broadcaster_args = {
+    #     'robot_name': robot_name_2,
+    #     'robot_base_frame': 'base_footprint',
+    # }
+
+    # world2base2 = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource([
+    #                                     install_dir + '/lib/' + description_package_name, 
+    #                                     '/robot_world_to_base_tf_broadcaster.py'
+    #                                 ]),
+    #     launch_arguments=broadcaster_args.items(),
+    # )
+
+    world2base1 = Node(
+        package=description_package_name,
+        executable='robot_world_to_base_tf_broadcaster.py',
+        arguments=['-robot_name', robot_name_1, '-robot_base_frame', "base_footprint"]
+    )
+
+    world2base2 = Node(
+        package=description_package_name,
+        executable='robot_world_to_base_tf_broadcaster.py',
+        arguments=['-robot_name', robot_name_2, '-robot_base_frame', "base_footprint"]
+    )
+
     return LaunchDescription([
         world_file_arg,
         gazebo,
         rsp_robot1,
         rsp_robot2,
         spawn_robot1,
-        spawn_robot2
+        spawn_robot2,
+        world2base1,
+        world2base2,
     ])

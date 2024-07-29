@@ -39,7 +39,7 @@ install(
 
 install(
 	PROGRAMS
-		scripts/pub_world2root_transform.py
+		scripts/robot_world_to_base_tf_broadcaster.py
 	DESTINATION
 		lib/${PROJECT_NAME}
 )
