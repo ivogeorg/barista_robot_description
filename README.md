@@ -55,7 +55,7 @@
 3. Expected result:
    | Gazebo | Rviz2 |
    | --- | --- |
-   | ![]() | ![]() |
+   | ![Two bots in Gazebo](assets/two_robots_in_gazebo.png) | ![Two bots in Rviz2](assets/two_robots_in_rviz2.png) |
 
 #### Implementation notes
 
