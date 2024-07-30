@@ -6,7 +6,7 @@
 
 #### Submission notes
 
-##### Part 1
+##### Checkpoint 7 Part 1
 
 1. Launching:
    ```
@@ -23,7 +23,7 @@
    | --- | --- |
    | ![Barista spawned in Gazebo](assets/checkpoint-7-part-1-gazebo.png) | ![Barista visualized in Rviz2](assets/checkpoint-7-part-1-rviz2.png) |
    
-##### Part 2
+##### Checkpoint 7 Part 2
 
 1. Launching:
    ```
@@ -39,7 +39,23 @@
    | Gazebo | Rviz2 |
    | --- | --- |
    | ![Barista spawned in Gazebo](assets/checkpoint-7-part-2-gazebo.png) | ![Barista visualized in Rviz2](assets/checkpoint-7-part-2-rviz2.png) |
-   
+
+##### Checkpoint 8 Part 1
+
+1. Launching:
+   ```
+   cd ~/ros2_ws/src
+   git clone https://github.com/ivogeorg/barista_robot_description.git
+   cd ~/ros2_ws
+   colcon build --packages-select barista_robot_description
+   source install/setup.bash
+   ros2 launch barista_robot_description barista_two_robots.launch.py
+   ```
+2. Note that the robots (all of a sudden) appear tilted forward when spawned. Nevertheless, when moved separately with `teleop_twist_keyboard`, they are flat and move fine.
+3. Expected result:
+   | Gazebo | Rviz2 |
+   | --- | --- |
+   | ![]() | ![]() |
 
 #### Implementation notes
 
