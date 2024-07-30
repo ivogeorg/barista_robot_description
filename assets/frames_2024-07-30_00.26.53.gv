@@ -1,0 +1,36 @@
+digraph G {
+"morty/odom" -> "morty/base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 100.214\nBuffer length: 4.68\nMost recent transform: 1049.725\nOldest transform: 1045.045\n"];
+"world" -> "morty/odom"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"rick/odom" -> "rick/base_footprint"[label=" Broadcaster: default_authority\nAverage rate: 100.214\nBuffer length: 4.68\nMost recent transform: 1049.73\nOldest transform: 1045.05\n"];
+"world" -> "rick/odom"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"rick/base_footprint" -> "rick/chassis"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"rick/chassis" -> "rick/laser_scanner"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"rick/chassis" -> "rick/standoff_rods"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"rick/standoff_rods" -> "rick/cup_holder"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"rick/laser_scanner" -> "rick/laser_scan_frame"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"morty/base_footprint" -> "morty/chassis"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"morty/chassis" -> "morty/laser_scanner"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"morty/chassis" -> "morty/standoff_rods"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"morty/standoff_rods" -> "morty/cup_holder"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"morty/laser_scanner" -> "morty/laser_scan_frame"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"rick/back_roll_link" -> "rick/back_pitch_link"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"rick/back_yaw_link" -> "rick/back_roll_link"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"rick/chassis" -> "rick/back_yaw_link"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"rick/front_roll_link" -> "rick/front_pitch_link"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"rick/front_yaw_link" -> "rick/front_roll_link"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"rick/chassis" -> "rick/front_yaw_link"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"rick/chassis" -> "rick/left_wheel"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"rick/chassis" -> "rick/right_wheel"[label=" Broadcaster: default_authority\nAverage rate: 19.107\nBuffer length: 4.658\nMost recent transform: 1049.722\nOldest transform: 1045.064\n"];
+"morty/back_roll_link" -> "morty/back_pitch_link"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+"morty/back_yaw_link" -> "morty/back_roll_link"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+"morty/chassis" -> "morty/back_yaw_link"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+"morty/front_roll_link" -> "morty/front_pitch_link"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+"morty/front_yaw_link" -> "morty/front_roll_link"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+"morty/chassis" -> "morty/front_yaw_link"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+"morty/chassis" -> "morty/left_wheel"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+"morty/chassis" -> "morty/right_wheel"[label=" Broadcaster: default_authority\nAverage rate: 19.031\nBuffer length: 4.624\nMost recent transform: 1049.713\nOldest transform: 1045.089\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1722299213.7023635"[ shape=plaintext ] ;
+}->"world";
+}
