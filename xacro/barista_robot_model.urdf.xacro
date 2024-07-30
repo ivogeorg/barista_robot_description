@@ -20,6 +20,15 @@
         <color rgba="0.0 0.0 0.0 1.0"/>
     </material>
 
+    <xacro:if value="${robot_name == 'morty'}">
+        <xacro:property name="base_color_rviz" value="blue"/>
+        <xacro:property name="base_color_gazebo" value="Gazebo/Blue"/>
+    </xacro:if>
+    <xacro:unless value="${robot_name == 'morty'}">
+        <xacro:property name="base_color_rviz" value="red"/>
+        <xacro:property name="base_color_gazebo" value="Gazebo/Red"/>
+    </xacro:unless>
+
     <!-- Robot base/root link -->
     <link name="base_footprint"/>
 
@@ -29,8 +38,8 @@
             <geometry>
                 <cylinder length="0.155" radius="0.178"/>
             </geometry>
-            <material name="blue"/>
-        </visual>
+            <material name="${base_color_rviz}"/>
+       </visual>
                         
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -45,9 +54,9 @@
             <inertia ixx="0.04961541666666667" ixy="0.0" ixz="0.0" iyy="0.04961541666666667" iyz="0.0" izz="0.07920999999999999"/>
         </inertial>
     </link>
-
+ 
     <gazebo reference="chassis">
-        <material>Gazebo/Blue</material>
+        <material>${base_color_gazebo}</material>
     </gazebo>
 
     <joint name="joint_base_footprint_chassis" type="fixed">
@@ -82,7 +91,7 @@
     <xacro:cup_holder_tray/>
 
     <gazebo reference="cup_holder">
-        <material>Gazebo/Blue</material>
+        <material>${base_color_gazebo}</material>
     </gazebo>
 
     <joint name="joint_standoff_rods_cup_holder" type="fixed">

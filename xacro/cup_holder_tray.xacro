@@ -12,7 +12,7 @@
                 <geometry>
                     <cylinder length="${cup_holder_length}" radius="${cup_holder_radius}"/>
                 </geometry>
-                <material name="blue"/>
+                <material name="${base_color_rviz}"/>
             </visual>
                             
             <collision>
@@ -28,7 +28,6 @@
                 <inertia ixx="0.007075" ixy="0.0" ixz="0.0" iyy="0.007075" iyz="0.0" izz="0.0128"/>
             </inertial>
         </link>
-
     </xacro:macro>
 
 
