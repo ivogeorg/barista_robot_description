@@ -37,7 +37,7 @@ def generate_launch_description():
     world_file_arg = DeclareLaunchArgument(
         'world',
         default_value=[get_package_share_directory(
-            'barista_robot_description'), '/worlds/playpen.world'],
+            'barista_robot_description'), '/worlds/bar_bot_empty.world'],
         description='Path to the Gazebo world file'
     )
 
